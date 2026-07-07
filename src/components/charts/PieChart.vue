@@ -10,7 +10,7 @@ const props = defineProps<{
 const chartRef = ref<HTMLElement | null>(null)
 const { setOption } = useChart(chartRef)
 
-const COLORS = ['#00d4ff', '#0066cc', '#00ff88', '#ffcc00', '#ff6b9d']
+const COLORS = ['#2c3e50', '#991b1b', '#5b8c5a', '#b8860b', '#c4a97d']
 
 watch(
   () => props.data,
@@ -22,31 +22,32 @@ watch(
       tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
       legend: {
         bottom: 0,
-        textStyle: { color: '#888', fontSize: 12 },
+        textStyle: { color: '#7a7a7a', fontSize: 12 },
       },
       graphic: {
         type: 'text',
         left: 'center',
-        top: '42%',
+        top: '40%',
         style: {
-          text: `总流量\n${total.toLocaleString()}`,
+          text: `总计\n${total.toLocaleString()}`,
           textAlign: 'center',
-          fill: '#ccc',
+          fill: '#2c2c2c',
           fontSize: 14,
-          lineHeight: 24,
+          lineHeight: 26,
+          fontFamily: 'Georgia, serif',
         },
       },
       series: [
         {
           type: 'pie',
           roseType: 'area',
-          radius: ['50%', '78%'],
-          center: ['50%', '46%'],
+          radius: ['48%', '76%'],
+          center: ['50%', '44%'],
           avoidLabelOverlap: false,
           itemStyle: {
-            borderRadius: 6,
-            borderColor: 'rgba(10,14,39,0.8)',
-            borderWidth: 3,
+            borderRadius: 4,
+            borderColor: '#fbf9f3',
+            borderWidth: 2,
           },
           label: { show: false },
           emphasis: {

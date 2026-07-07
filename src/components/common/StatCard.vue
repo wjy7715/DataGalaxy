@@ -23,37 +23,117 @@ const { displayValue } = useCountUp(toRef(props, 'value'))
     <div class="stat-card__value">{{ displayValue }}</div>
     <div
       class="stat-card__trend"
-      :class="{
-        'stat-card__trend--up': trend === 'up',
-        'stat-card__trend--down': trend === 'down',
-      }"
+      :class="trend === 'up' ? 'stat-card__trend--up' : 'stat-card__trend--down'"
     >
       <span class="stat-card__arrow">{{ trend === 'up' ? '▲' : '▼' }}</span>
       <span>{{ trendValue }}</span>
     </div>
+    <!-- 四角回纹装饰 -->
+    <span class="stat-card__corner stat-card__corner--tl" />
+    <span class="stat-card__corner stat-card__corner--tr" />
+    <span class="stat-card__corner stat-card__corner--bl" />
+    <span class="stat-card__corner stat-card__corner--br" />
   </div>
 </template>
 
 <style scoped>
 .stat-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  padding: 18px 20px;
+  background: #fefefc;
+  border: 1px solid #e5ded0;
+  border-radius: 2px;
+  padding: 22px 24px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  animation: statPulse 3s ease-in-out infinite;
+  position: relative;
+  transition: box-shadow 0.4s ease;
 }
 
-@keyframes statPulse {
-  0%,
-  100% {
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-  50% {
-    border-color: rgba(0, 212, 255, 0.25);
-  }
+.stat-card:hover {
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.08);
+}
+
+/* 回纹角装饰 */
+.stat-card__corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.stat-card__corner::before,
+.stat-card__corner::after {
+  content: '';
+  position: absolute;
+  background: #c4a97d;
+}
+
+.stat-card__corner--tl {
+  top: -1px;
+  left: -1px;
+}
+.stat-card__corner--tl::before {
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 1px;
+}
+.stat-card__corner--tl::after {
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 10px;
+}
+
+.stat-card__corner--tr {
+  top: -1px;
+  right: -1px;
+}
+.stat-card__corner--tr::before {
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 1px;
+}
+.stat-card__corner--tr::after {
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 10px;
+}
+
+.stat-card__corner--bl {
+  bottom: -1px;
+  left: -1px;
+}
+.stat-card__corner--bl::before {
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  height: 1px;
+}
+.stat-card__corner--bl::after {
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 10px;
+}
+
+.stat-card__corner--br {
+  bottom: -1px;
+  right: -1px;
+}
+.stat-card__corner--br::before {
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 1px;
+}
+.stat-card__corner--br::after {
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 10px;
 }
 
 .stat-card__header {
@@ -68,15 +148,17 @@ const { displayValue } = useCountUp(toRef(props, 'value'))
 
 .stat-card__label {
   font-size: 13px;
-  color: #888;
+  color: #8c8c8c;
+  letter-spacing: 1px;
 }
 
 .stat-card__value {
   font-size: 32px;
   font-weight: 700;
-  color: #00d4ff;
+  color: #2c3e50;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  font-family: 'Georgia', 'Times New Roman', serif;
 }
 
 .stat-card__trend {
@@ -84,15 +166,15 @@ const { displayValue } = useCountUp(toRef(props, 'value'))
   align-items: center;
   gap: 4px;
   font-size: 12px;
-  color: #666;
+  letter-spacing: 0.5px;
 }
 
 .stat-card__trend--up {
-  color: #00ff88;
+  color: #991b1b;
 }
 
 .stat-card__trend--down {
-  color: #ff5555;
+  color: #5b8c5a;
 }
 
 .stat-card__arrow {

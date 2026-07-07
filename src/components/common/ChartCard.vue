@@ -6,9 +6,7 @@ defineProps<{
 
 <template>
   <div class="chart-card">
-    <h3 class="chart-card__title">
-      {{ title }}
-    </h3>
+    <h3 class="chart-card__title">{{ title }}</h3>
     <div class="chart-card__body">
       <slot />
     </div>
@@ -17,20 +15,38 @@ defineProps<{
 
 <style scoped>
 .chart-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 16px;
-  backdrop-filter: blur(10px);
+  background: #fefefc;
+  border: 1px solid #e5ded0;
+  border-radius: 2px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
+
+.chart-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4cbb8, transparent);
+}
+
 .chart-card__title {
-  margin: 0 0 12px 0;
-  font-size: 16px;
-  font-weight: 500;
-  color: #e0e0e0;
+  margin: 0 0 14px 0;
+  padding-left: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c2c2c;
+  letter-spacing: 2px;
+  border-left: 3px solid #991b1b;
+  font-family: 'Noto Serif SC', 'STSong', 'SimSun', serif;
 }
+
 .chart-card__body {
-  width: 100%;
-  height: calc(100% - 32px);
+  flex: 1;
+  min-height: 0;
 }
 </style>

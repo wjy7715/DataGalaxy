@@ -21,22 +21,23 @@ watch(
       xAxis: {
         type: 'category',
         data: val.map((d) => d.name),
-        axisLabel: { color: '#888', fontSize: 12 },
-        axisLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } },
+        axisLabel: { color: '#7a7a7a', fontSize: 12 },
+        axisLine: { lineStyle: { color: '#d9d0c1' } },
+        axisTick: { show: false },
       },
       yAxis: {
         type: 'value',
-        axisLabel: { color: '#888', fontSize: 12 },
-        splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } },
+        axisLabel: { color: '#7a7a7a', fontSize: 12 },
+        splitLine: { lineStyle: { color: '#ede8db', type: 'dashed' } },
       },
       series: [
         {
           type: 'bar',
           data: val.map((d) => d.value),
           animationDuration: 1000,
-          barWidth: '50%',
+          barWidth: '45%',
           itemStyle: {
-            borderRadius: [6, 6, 0, 0],
+            borderRadius: [4, 4, 0, 0],
             color: {
               type: 'linear',
               x: 0,
@@ -44,15 +45,15 @@ watch(
               x2: 0,
               y2: 1,
               colorStops: [
-                { offset: 0, color: '#00d4ff' },
-                { offset: 1, color: '#0055aa' },
+                { offset: 0, color: '#3d5a80' },
+                { offset: 1, color: '#5b8c5a' },
               ],
             },
           },
           label: {
             show: true,
             position: 'top',
-            color: '#aaa',
+            color: '#8c8c8c',
             fontSize: 11,
           },
         },

@@ -13,15 +13,17 @@ body {
 }
 
 body {
-  font-family:
-    'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', 'Consolas', 'Menlo', monospace, sans-serif;
+  font-family: 'Noto Serif SC', 'STSong', 'SimSun', 'PingFang SC', 'Microsoft YaHei', serif;
   font-size: 14px;
-  color: #e0e0e0;
-  background-color: #0a0e27;
+  color: #2c2c2c;
+  background-color: #fbf9f3;
   background-image:
-    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+    /* 竖向竹简线 */
+    repeating-linear-gradient(90deg, transparent, transparent 59px, #e8e2d4 59px, #e8e2d4 60px),
+    /* 淡墨山水晕染 - 顶部 */
+    radial-gradient(ellipse 1200px 300px at 50% 0%, rgba(44, 62, 80, 0.04) 0%, transparent 70%),
+    /* 淡墨山水晕染 - 底部 */
+    radial-gradient(ellipse 1000px 200px at 50% 100%, rgba(139, 119, 101, 0.03) 0%, transparent 70%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -40,10 +42,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
+  background: #d4cbb8;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: #baae98;
 }

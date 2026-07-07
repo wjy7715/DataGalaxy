@@ -6,9 +6,9 @@ defineProps<{
 }>()
 
 const MEDAL_COLORS: Record<number, string> = {
-  1: '#ffcc00',
-  2: '#c0c0c0',
-  3: '#cd7f32',
+  1: '#991b1b',
+  2: '#b8860b',
+  3: '#5b8c5a',
 }
 </script>
 
@@ -50,26 +50,28 @@ const MEDAL_COLORS: Record<number, string> = {
 
 .rank-list__header {
   display: flex;
-  padding: 8px 12px;
+  padding: 8px 14px;
   font-size: 12px;
-  color: #666;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #a0998c;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #e5ded0;
 }
 
 .rank-list__row {
   display: flex;
-  padding: 9px 12px;
+  padding: 10px 14px;
   font-size: 13px;
-  color: #ccc;
+  color: #4a4a4a;
   transition: background 0.3s;
+  border-bottom: 1px solid #f2efe7;
 }
 
 .rank-list__row:nth-child(even) {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(196, 169, 125, 0.06);
 }
 
 .rank-list__row:hover {
-  background: rgba(0, 212, 255, 0.05);
+  background: rgba(153, 27, 27, 0.04);
 }
 
 .rank-list__col--rank {
@@ -90,6 +92,7 @@ const MEDAL_COLORS: Record<number, string> = {
   text-align: right;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
+  font-family: 'Georgia', 'Times New Roman', serif;
 }
 
 .rank-list__medal {
@@ -98,23 +101,23 @@ const MEDAL_COLORS: Record<number, string> = {
   justify-content: center;
   width: 20px;
   height: 20px;
-  border-radius: 50%;
   font-size: 11px;
   font-weight: 700;
-  color: #1a1a2e;
+  color: #fff;
+  font-family: 'Georgia', serif;
 }
 
 .rank-list__index {
-  color: #555;
+  color: #b5a995;
+  font-family: 'Georgia', serif;
 }
 
-/* TransitionGroup animations */
 .rank-item-enter-active {
   transition: all 0.4s ease;
 }
 
 .rank-item-enter-from {
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateX(16px);
 }
 </style>

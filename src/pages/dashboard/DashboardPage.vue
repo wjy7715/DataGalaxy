@@ -27,19 +27,16 @@ function retry() {
 
 <template>
   <div class="dashboard">
-    <!-- Loading overlay -->
     <div v-if="store.loading && !store.data" class="dashboard__loading">
-      <div class="loading-spinner" />
-      <span>数据加载中...</span>
+      <div class="loading-brush" />
+      <span>研磨中...</span>
     </div>
 
-    <!-- Error state -->
     <div v-else-if="store.error" class="dashboard__error">
       <p>{{ store.error }}</p>
       <button class="dashboard__retry-btn" @click="retry">重新加载</button>
     </div>
 
-    <!-- Main content -->
     <template v-else-if="store.data">
       <div class="dashboard__stats">
         <StatCard
@@ -54,19 +51,19 @@ function retry() {
       </div>
 
       <div class="dashboard__row">
-        <ChartCard title="周访问量统计">
+        <ChartCard title="周访问量">
           <BarChart :data="store.data.barChart" />
         </ChartCard>
-        <ChartCard title="24h 实时趋势">
+        <ChartCard title="时辰趋势">
           <LineChart :data="store.data.lineChart" />
         </ChartCard>
       </div>
 
       <div class="dashboard__row">
-        <ChartCard title="流量来源分布">
+        <ChartCard title="来源分布">
           <PieChart :data="store.data.pieChart" />
         </ChartCard>
-        <ChartCard title="热门页面 TOP 8">
+        <ChartCard title="热门页面">
           <RankList :data="store.data.rankList" />
         </ChartCard>
       </div>
@@ -78,20 +75,20 @@ function retry() {
 .dashboard {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   height: 100%;
 }
 
 .dashboard__stats {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  gap: 18px;
 }
 
 .dashboard__row {
   display: grid;
   grid-template-columns: 3fr 2fr;
-  gap: 16px;
+  gap: 18px;
   flex: 1;
   min-height: 0;
 }
@@ -103,17 +100,18 @@ function retry() {
   justify-content: center;
   height: 100%;
   gap: 20px;
-  color: #888;
+  color: #a0998c;
   font-size: 15px;
+  letter-spacing: 2px;
 }
 
-.loading-spinner {
-  width: 48px;
-  height: 48px;
-  border: 3px solid rgba(0, 212, 255, 0.15);
-  border-top-color: #00d4ff;
+.loading-brush {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #e5ded0;
+  border-top-color: #991b1b;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 1.2s linear infinite;
 }
 
 @keyframes spin {
@@ -129,22 +127,23 @@ function retry() {
   justify-content: center;
   height: 100%;
   gap: 16px;
-  color: #ff5555;
+  color: #991b1b;
   font-size: 15px;
 }
 
 .dashboard__retry-btn {
   padding: 8px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.05);
-  color: #ccc;
+  border: 1px solid #c4a97d;
+  border-radius: 2px;
+  background: #fefefc;
+  color: #2c2c2c;
   cursor: pointer;
   font-size: 14px;
+  letter-spacing: 1px;
   transition: background 0.2s;
 }
 
 .dashboard__retry-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(153, 27, 27, 0.05);
 }
 </style>
