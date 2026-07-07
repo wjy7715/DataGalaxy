@@ -10,31 +10,48 @@ const props = defineProps<{
 const chartRef = ref<HTMLElement | null>(null)
 const { setOption } = useChart(chartRef)
 
-const COLORS = ['#00d4ff', '#0066cc', '#00ff88', '#ffcc00']
+const COLORS = ['#00d4ff', '#0066cc', '#00ff88', '#ffcc00', '#ff6b9d']
 
 watch(
   () => props.data,
   (val) => {
+    if (!val.length) return
+    const total = val.reduce((sum, d) => sum + d.value, 0)
     setOption({
-      tooltip: { trigger: 'item' },
+      backgroundColor: 'transparent',
+      tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
       legend: {
         bottom: 0,
-        textStyle: { color: '#999' },
+        textStyle: { color: '#888', fontSize: 12 },
+      },
+      graphic: {
+        type: 'text',
+        left: 'center',
+        top: '42%',
+        style: {
+          text: `总流量\n${total.toLocaleString()}`,
+          textAlign: 'center',
+          fill: '#ccc',
+          fontSize: 14,
+          lineHeight: 24,
+        },
       },
       series: [
         {
           type: 'pie',
-          radius: ['45%', '70%'],
-          center: ['50%', '45%'],
+          roseType: 'area',
+          radius: ['50%', '78%'],
+          center: ['50%', '46%'],
           avoidLabelOverlap: false,
           itemStyle: {
-            borderRadius: 4,
-            borderColor: 'rgba(0,0,0,0.8)',
-            borderWidth: 2,
+            borderRadius: 6,
+            borderColor: 'rgba(10,14,39,0.8)',
+            borderWidth: 3,
           },
           label: { show: false },
           emphasis: {
-            label: { show: true, fontSize: 14, fontWeight: 'bold' },
+            scaleSize: 8,
+            label: { show: true, fontSize: 13, fontWeight: 'bold' },
           },
           data: val.map((d, i) => ({
             ...d,
@@ -56,6 +73,6 @@ watch(
 .pie-chart {
   width: 100%;
   height: 100%;
-  min-height: 280px;
+  min-height: 260px;
 }
 </style>

@@ -17,14 +17,30 @@ export interface ChartConfig {
   height?: number
 }
 
+export type TrendType = 'up' | 'down'
+
+export interface StatItem {
+  label: string
+  value: number
+  icon: string
+  trend: TrendType
+  trendValue: string
+}
+
+export interface RankItem {
+  rank: number
+  pageName: string
+  pv: number
+  uv: number
+  bounceRate: number
+}
+
 export interface DashboardData {
-  totalUsers: number
-  totalOrders: number
-  revenue: number
-  conversionRate: number
+  statCards: StatItem[]
   barChart: ChartDataPoint[]
   lineChart: TimeSeriesPoint[]
   pieChart: ChartDataPoint[]
+  rankList: RankItem[]
 }
 
 export interface ApiResponse<T> {

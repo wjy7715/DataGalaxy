@@ -9,7 +9,10 @@ export const useDashboardStore = defineStore('dashboard', () => {
   const data = ref<DashboardData | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
+  const lastUpdated = ref<number>(0)
   const dataService = ref<IDataService>(new MockDataService())
+
+  let refreshTimer: ReturnType<typeof setInterval> | null = null
 
   async function fetchDashboard() {
     loading.value = true
@@ -18,7 +21,8 @@ export const useDashboardStore = defineStore('dashboard', () => {
       logger.debug('Store: fetching dashboard')
       const response = await dataService.value.fetchDashboard()
       data.value = response.data
-      logger.info('Store: dashboard data loaded', { data: response.data })
+      lastUpdated.value = Date.now()
+      logger.info('Store: dashboard data loaded')
     } catch (e) {
       const message = e instanceof Error ? e.message : '未知错误'
       error.value = message
@@ -28,9 +32,32 @@ export const useDashboardStore = defineStore('dashboard', () => {
     }
   }
 
+  function startAutoRefresh(intervalMs = 10000) {
+    stopAutoRefresh()
+    refreshTimer = setInterval(() => {
+      fetchDashboard()
+    }, intervalMs)
+  }
+
+  function stopAutoRefresh() {
+    if (refreshTimer !== null) {
+      clearInterval(refreshTimer)
+      refreshTimer = null
+    }
+  }
+
   function setDataService(service: IDataService) {
     dataService.value = service
   }
 
-  return { data, loading, error, fetchDashboard, setDataService }
+  return {
+    data,
+    loading,
+    error,
+    lastUpdated,
+    fetchDashboard,
+    startAutoRefresh,
+    stopAutoRefresh,
+    setDataService,
+  }
 })
