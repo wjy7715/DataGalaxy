@@ -44,8 +44,8 @@ onUnmounted(() => {
     <header class="main-layout__header">
       <div class="main-layout__left">
         <span class="main-layout__seal" />
-        <h1 class="main-layout__title">如意数据大屏</h1>
-        <span class="main-layout__subtitle">RuyiBigScreen</span>
+        <h1 class="main-layout__title">DataGalaxy 数据星河</h1>
+        <span class="main-layout__subtitle">实时数据可视化大屏</span>
       </div>
       <div class="main-layout__right">
         <span v-if="formatLastUpdated()" class="main-layout__badge">{{ formatLastUpdated() }}</span>
